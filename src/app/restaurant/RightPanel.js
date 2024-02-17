@@ -5,7 +5,7 @@ export const RightPanel = () => {
 
     const logoutHandler = () => {
         deleteCookie("jwt");
-        window.location.href = `/login`;
+        window.location.href = `/login?logout=true`;
     }
 
     return (

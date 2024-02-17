@@ -4,6 +4,7 @@ import {BrowserRouter, Navigate, Route, Routes} from 'react-router-dom';
 import {PrivateRoutes} from "./PrivateRoutes";
 import {RestaurantPage} from "../app/restaurant/RestaurantPage";
 import {LoginPage} from "../login/LoginPage";
+import {CmsPage} from "../app/cms/CmsPage";
 
 export const Router = () => {
     return (
@@ -13,8 +14,7 @@ export const Router = () => {
                 <Route path='/login' element={<LoginPage/>}/>
                 <Route element={<PrivateRoutes/>}>
                     <Route path='/restaurant' element={<RestaurantPage/>}/>
-                    <Route path='/cms' element={<RestaurantPage/>}/>
-                    <Route path='/admin' element={<RestaurantPage/>}/>
+                    <Route path='/cms' element={<CmsPage/>}/>
                 </Route>
             </Routes>
         </BrowserRouter>
