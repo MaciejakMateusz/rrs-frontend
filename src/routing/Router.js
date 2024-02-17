@@ -2,21 +2,19 @@ import React from 'react';
 import '../index.css'
 import {BrowserRouter, Navigate, Route, Routes} from 'react-router-dom';
 import {PrivateRoutes} from "./PrivateRoutes";
-import {LoginForm} from "../LoginForm";
-import {RegisterForm} from "../RegisterForm";
-import {Restaurant} from "../app/app/restaurant/Restaurant";
+import {RestaurantPage} from "../app/restaurant/RestaurantPage";
+import {LoginPage} from "../login/LoginPage";
 
 export const Router = () => {
     return (
         <BrowserRouter>
             <Routes>
                 <Route path='/' element={<Navigate to={"/login"}/>}/>
-                <Route path='/login' element={<LoginForm/>}/>
-                <Route path='/register' element={<RegisterForm/>}/>
-                <Route element={<PrivateRoutes />}>
-                    <Route path='/restaurant' element={<Restaurant/>}/>
-                    <Route path='/cms' element={<Restaurant/>}/>
-                    <Route path='/admin' element={<Restaurant/>}/>
+                <Route path='/login' element={<LoginPage/>}/>
+                <Route element={<PrivateRoutes/>}>
+                    <Route path='/restaurant' element={<RestaurantPage/>}/>
+                    <Route path='/cms' element={<RestaurantPage/>}/>
+                    <Route path='/admin' element={<RestaurantPage/>}/>
                 </Route>
             </Routes>
         </BrowserRouter>

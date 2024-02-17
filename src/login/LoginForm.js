@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import {Link} from "react-router-dom";
-import {apiHost} from "./apiData";
+import {apiHost} from "../apiData";
 
 export const LoginForm = () => {
     const [form, setForm] = useState({username: "", password: ""})
@@ -39,7 +39,8 @@ export const LoginForm = () => {
                 }
             })
             .then(data => {
-                document.cookie = `jwt=${encodeURIComponent(JSON.stringify(data))} path=/`
+                document.cookie = `jwt=${encodeURIComponent(JSON.stringify(data))} path=/`;
+                window.location.href = `/restaurant`;
             })
             .catch(() => setNotAuthorized(true))
     }

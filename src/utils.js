@@ -1,4 +1,4 @@
-export const getCookie = cookieName => {
+const getCookie = cookieName => {
     let cookie = {};
     document.cookie.split(';').forEach(function(el) {
         let [key,value] = el.split('=');
@@ -7,7 +7,7 @@ export const getCookie = cookieName => {
     return cookie[cookieName];
 }
 
-function decodeToken(urlEncodedString) {
+const decodeToken = urlEncodedString => {
     let decodedUriComponent = decodeURIComponent(urlEncodedString.replace(/\+/g, ' ').replace(' path', ''));
     return JSON.parse(decodedUriComponent).accessToken;
 }
