@@ -1,10 +1,16 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {Link} from "react-router-dom";
 import {apiHost} from "../apiData";
+import {urlParamValue} from "../utils";
 
 export const LoginForm = () => {
-    const [form, setForm] = useState({username: "", password: ""})
-    const [notAuthorized, setNotAuthorized] = useState(false)
+    const [form, setForm] = useState({username: "", password: ""});
+    const [notAuthorized, setNotAuthorized] = useState(false);
+    const [isLoggedOut, setIsLoggedOut] = useState(false);
+
+    useEffect(() => {
+        setIsLoggedOut(Boolean(urlParamValue("logout")))
+    }, []);
 
     const setFormFields = e => {
         const {name, value} = e.target;
@@ -45,6 +51,24 @@ export const LoginForm = () => {
             .catch(() => setNotAuthorized(true))
     }
 
+    const renderValidationMsg = () => {
+        if(notAuthorized) {
+            return (
+                <p style={{fontSize: '0.8rem', color: 'tomato'}}>
+                    Niepoprawny email lub hasło, spróbuj ponownie
+                </p>
+            );
+        } else if (isLoggedOut) {
+            return (
+                <p style={{fontSize: '0.8rem', color: 'green'}}>
+                    Wylogowano pomyślnie
+                </p>
+            );
+        } else {
+            return <></>
+        }
+    }
+
     return (
         <>
             <div className="text-center">
@@ -71,11 +95,7 @@ export const LoginForm = () => {
                 <button className="btn btn-primary btn-user btn-block" style={{fontSize: '1.1rem'}}>Zaloguj się
                 </button>
             </form>
-            {notAuthorized && (
-                <p className="validation" style={{fontSize: '0.8rem'}}>
-                    Niepoprawny email lub hasło, spróbuj ponownie
-                </p>
-            )}
+            {renderValidationMsg()}
             <hr/>
             <div className="text-center">
                 <Link to="/register" className="small">Stwórz nowe konto</Link>
